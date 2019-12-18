@@ -27,13 +27,13 @@ class arenacontroller extends Controller
         date_default_timezone_get('Asia/Jakarta');
 
         $phpdate = date_create_from_format('Y-m-d H:i:s',$request->waktu_selesai,new DateTimeZone('Asia/Jakarta'));
-
-        if($phpdate < new DateTime('now'))
-
-        return response()->json([
-            'success'=> 0,
-            'message'=>'arena tidak dapat dibuat karena batas waktu akhir sudah lewat'
-        ]);
+        
+        if($phpdate < new DateTime()){
+            return response()->json([
+                'success'=> 0,
+                'message'=>'arena tidak dapat dibuat karena batas waktu akhir sudah lewat'
+            ]);
+        }
         
         $uniquecode=$this->generateRandomString(5);
 
