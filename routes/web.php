@@ -20,8 +20,13 @@ Route::get('/xml.xml','api\soalcontroller@index');
 Route::post('/login','Auth\LoginController@login');
 Route::get('/logout','api\userController@logout');
 Route::post('/register','Auth\RegisterController@register');
+
 Route::post('/createarena','api\arenacontroller@createarena');
 Route::post('/joinarena','api\arenacontroller@joinarena');
 Route::post('/submitarena','api\arenacontroller@submitarena');
 Route::get('/historiarena','api\arenacontroller@historiarena');
 Route::post('/detailarena','api\arenacontroller@detailarena');
+
+Route::get('/createduel', 'api\DuelController@createDuel');
+Route::post('/submitduel', 'api\DuelController@submitDuel');
+Route::post('/cancelduel', 'api\DuelController@cancelDuel');

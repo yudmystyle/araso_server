@@ -24,7 +24,7 @@ class arenacontroller extends Controller
 
     public function createarena(Request $request)
     {
-        date_default_timezone_get('Asia/Jakarta');
+        date_default_timezone_set('Asia/Jakarta');
 
         $phpdate = date_create_from_format('Y-m-d H:i:s',$request->waktu_selesai,new DateTimeZone('Asia/Jakarta'));
         

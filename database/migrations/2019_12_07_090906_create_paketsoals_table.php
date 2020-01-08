@@ -27,6 +27,6 @@ class CreatePaketsoalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('paketsoals');
     }
 }
