@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'isonline', 'password',
+        'name', 'isonline', 'password', 'onduel'
     ];
 
     /**
@@ -43,5 +43,6 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\partisipan','id_user','id_user');
     }
+    
 
 }

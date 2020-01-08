@@ -33,6 +33,7 @@ class usercontroller extends Controller
     {
         $user = Auth::user();
         $user->isonline=false;
+        $user->onduel=false;
         $user->save();
         Auth::logout();
 

@@ -25,3 +25,8 @@ Route::post('/joinarena','api\arenacontroller@joinarena');
 Route::post('/submitarena','api\arenacontroller@submitarena');
 Route::get('/historiarena','api\arenacontroller@historiarena');
 Route::post('/detailarena','api\arenacontroller@detailarena');
+
+
+Route::get('/opponent', 'DuelController@GenerateRoom');
+Route::get('/duelqueue/{id}', 'DuelController@QueuePlayer');
+

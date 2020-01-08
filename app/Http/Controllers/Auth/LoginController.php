@@ -66,7 +66,8 @@ class LoginController extends Controller
             $user->isonline = true;
             $user->save();
             return response()->json([
-                'success'=> 1
+                'success'=> 1,
+                'user' => $user
             ]);
         }else{
             return response()->json([

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateDuelRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id_user');
-            $table->string('name');
-            $table->boolean('isonline');
-            $table->boolean('onduel')->default(false);
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('duel_rooms', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('player_one');
+            $table->integer('player_two');
+            $table->string('question_seeder');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('duel_rooms');
     }
 }
