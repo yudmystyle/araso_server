@@ -88,6 +88,42 @@ class DuelController extends Controller
         ]);
     }
 
+    public function checkDuel(Request $request){
+        $duel = Duel::where('id_duel', $request->id_duel)->first();
+
+        if($duel->status == 'playing'){
+            //Get opponent
+            $opponent_participant = DuelParticipant::where('id_duel', $request->id_duel)->where('id_user', '!=', Auth::user()->id_user)->first();
+            $opponent = User::where('id_user', $opponent_participant->id_user)->first();
+
+            return response()->json([
+                'success' => 1,
+                'id_duel' => $duel->id_duel,
+                'paketsoal' => $duel->id_paketsoal,
+                'opponent' => $opponent->name,
+                'status' => 'Playing'
+            ]);
+        }
+        else if($duel->status == 'done'){
+            return response()->json([
+                'success' => 1,
+                'id_duel' => $duel->id_duel,
+                'paketsoal' => $duel->id_paketsoal,
+                'opponent' => null,
+                'status' => 'Done'
+            ]);
+        }
+        else{
+            return response()->json([
+                'success' => 1,
+                'id_duel' => $duel->id_duel,
+                'paketsoal' => $duel->id_paketsoal,
+                'opponent' => null,
+                'status' => 'Waiting'
+            ]);
+        }
+    }
+
     public function cancelDuel(Request $request){
         $this->finishDuel($request->id_duel);
 
@@ -112,7 +148,7 @@ class DuelController extends Controller
                 'success'=> 1,
                 'opponent' => $opponent->name,
                 'status' => 'Playing',
-                'score' => '-'
+                'score' => null
             ]);
         }
         else{

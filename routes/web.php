@@ -29,4 +29,5 @@ Route::post('/detailarena','api\arenacontroller@detailarena');
 
 Route::get('/createduel', 'api\DuelController@createDuel');
 Route::post('/submitduel', 'api\DuelController@submitDuel');
+Route::post('/checkduel', 'api\DuelController@checkDuel');
 Route::post('/cancelduel', 'api\DuelController@cancelDuel');

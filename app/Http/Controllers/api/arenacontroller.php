@@ -68,7 +68,7 @@ class arenacontroller extends Controller
 
     public function joinarena(Request $request)
     {
-        date_default_timezone_get('Asia/Jakarta');
+        date_default_timezone_set('Asia/Jakarta');
         $arena=Arena::where('uniquecode',$request->uniquecode)->first();
         
 
