@@ -146,6 +146,11 @@ class arenacontroller extends Controller
             $temp->score = $value->score;
             array_push($histori,$temp);
         }
+
+        $c = collect($histori);
+        $sorted = $c->sortByDesc('score');
+        $histori = $sorted->values()->toArray();
+
         return response()->json([
             'data'=>$histori
         ]);
@@ -170,13 +175,16 @@ class arenacontroller extends Controller
         else{
             $bisa_mengerjakan=false;
         }
+
+        $c = collect($detail);
+        $sorted = $c->sortByDesc('score');
+        $detail = $sorted->values()->toArray();
+
         return response()->json([
             'data'=>$detail,
             'bisa_mengerjakan'=>$bisa_mengerjakan
         ]);
     }
-
-
 
     public function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyz';

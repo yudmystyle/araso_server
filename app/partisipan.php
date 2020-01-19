@@ -30,8 +30,4 @@ class partisipan extends Model
     {
         return $this->belongsTo('App\arena','id_arena','id_arena');
     }
-
-
-
-    //
 }
