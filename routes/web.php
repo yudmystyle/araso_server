@@ -31,3 +31,6 @@ Route::get('/createduel', 'api\DuelController@createDuel');
 Route::post('/submitduel', 'api\DuelController@submitDuel');
 Route::post('/checkduel', 'api\DuelController@checkDuel');
 Route::post('/cancelduel', 'api\DuelController@cancelDuel');
+Route::post('/submitanswer', 'api\DuelController@submitAnswer');
+Route::post('/getyouranswers', 'api\DuelController@getYourAnswers');
+Route::post('/getopponentanswers', 'api\DuelController@getOpponentAnswers');

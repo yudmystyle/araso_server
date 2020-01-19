@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\paketsoal;
 use App\User;
 use App\Duel;
+use App\DuelAnswer;
 use Auth;
 
 class DuelController extends Controller
@@ -165,5 +166,38 @@ class DuelController extends Controller
         $duel = Duel::where('id_duel', $id_duel)->first();
         $duel->status = 'done';
         $duel->save();
+    }
+
+    public function submitAnswer(Request $request){
+        $duel_answer = new DuelAnswer;
+        $duel_answer->id_user = Auth::user()->id_user;
+        $duel_answer->id_duel = $request->id_duel;
+        $duel_answer->answer = $request->answer;
+        $duel_answer->correct_answer = $request->correct_answer;
+        $duel_answer->question_number = $request->question_number;
+        $duel_answer->save();
+
+        return response()->json([
+            'success'=> 1,
+            'message' => 'Success submit answer : ' . $duel_answer->answer . ', question number : ' . $duel_answer->question_number
+        ]);
+    }
+
+    public function getYourAnswers(Request $request){
+        $duel_answers = DuelAnswer::where('id_duel', $request->id_duel)->where('id_user', Auth::user()->id_user)->get();
+
+        return response()->json([
+            'success'=> 1,
+            'data' => $duel_answers
+        ]);
+    }
+
+    public function getOpponentAnswers(Request $request){
+        $duel_answers = DuelAnswer::where('id_duel', $request->id_duel)->where('id_user', '!=', Auth::user()->id_user)->get();
+
+        return response()->json([
+            'success'=> 1,
+            'data' => $duel_answers
+        ]);
     }
 }
