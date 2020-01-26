@@ -35,7 +35,7 @@ class arenacontroller extends Controller
             ]);
         }
         
-        $uniquecode=$this->generateRandomString(5);
+        $uniquecode=$this->generateRandomString(6);
 
         $check=Arena::where('uniquecode',$uniquecode)->first();
 
@@ -187,7 +187,7 @@ class arenacontroller extends Controller
     }
 
     public function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $characters = '0123456789';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
